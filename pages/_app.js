@@ -1,7 +1,8 @@
-import '../styles/globals.css'
+import React from 'react';
+import App from 'next/app';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import '../styles/antd-custom.less';
 
-export default MyApp
+const MyApp = ({ Component, pageProps }) => <Component {...pageProps} />;
+
+export default MyApp;

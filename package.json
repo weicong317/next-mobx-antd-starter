@@ -1,15 +1,75 @@
 {
-  "name": "here",
+  "name": "nextjs-mobx-antd-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "commit": "git-cz",
+    "tidy": "yarn prettier && yarn lint:eslint && yarn lint:css",
+    "lint:eslint": "eslint --fix --ext js,jsx .",
+    "lint:css": "stylelint **/*.{js,jsx}",
+    "prettier": "prettier --write \"**/*.{js,jsx,less,css,scss,md,json}\"",
+    "bump-version": "standard-version --skip.commit --skip.tag"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   },
   "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "antd": "^4.11.2",
+    "less": "^4.1.0",
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "babel-plugin-import": "^1.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^27.0.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "null-loader": "^4.0.1",
+    "prettier": "^2.2.1",
+    "standard-version": "^9.1.0",
+    "stylelint": "^13.9.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint --config .commitlintrc.js -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "stylelint",
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,less,scss}": [
+      "stylelint",
+      "prettier --write"
+    ],
+    "*.{md,json,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
