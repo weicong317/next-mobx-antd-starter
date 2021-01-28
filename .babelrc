@@ -3,6 +3,6 @@
     "next/babel"
   ],
   "plugins": [
-    ["import", { "libraryName": "antd", "style": false }],
+    ["import", { "libraryName": "antd", "style": false }]
   ]
 }
